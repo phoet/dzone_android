@@ -1,0 +1,10 @@
+h1. DZone Mobile for Android
+
+Just testing the Android platform currently. This is not close to any public release yet...
+
+For more information about DZone Mobile visit these resources:
+
+* "DZone Mobile for iPhone":http://blog.nofail.de/dzone/
+* "The infficial DZone API":http://dzone-api.heroku.com/
+* "iPhone Source on GitHub":https://github.com/phoet/dzone
+* "API Source on GitHub":https://github.com/phoet/dzone_api
