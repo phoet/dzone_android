@@ -20,12 +20,12 @@ public class NetHelper {
 	public static List<Item> getItems() {
 		try {
 			String data = getDataFromUrl(HTTP_DZONE_API_HEROKU_COM_ITEMS_JSON);
-			JSONArray json = new JSONArray(data);
+			JSONArray array = new JSONArray(data);
 			List<Item> items = new ArrayList<Item>();
-			for (int i = 0; i < json.length(); i++) {
-				JSONObject item = json.getJSONObject(i);
-				Log.d("json", "" + i + item.toString());
-				items.add(Item.createFromJson(item));
+			for (int i = 0; i < array.length(); i++) {
+				JSONObject object = array.getJSONObject(i);
+				Log.d("json", object.toString());
+				items.add(Item.createFromJson(object));
 			}
 			return items;
 		} catch (Exception e) {
@@ -36,10 +36,8 @@ public class NetHelper {
 	private static String getDataFromUrl(String httpDzoneApiHerokuComItemsJson) {
 		try {
 			HttpClient client = new DefaultHttpClient();
-			HttpUriRequest request = new HttpGet(
-					HTTP_DZONE_API_HEROKU_COM_ITEMS_JSON);
-			InputStream stream = client.execute(request).getEntity()
-					.getContent();
+			HttpUriRequest request = new HttpGet(HTTP_DZONE_API_HEROKU_COM_ITEMS_JSON);
+			InputStream stream = client.execute(request).getEntity().getContent();
 
 			byte[] b = new byte[1024 * 4];
 			StringBuffer sb = new StringBuffer();
@@ -47,6 +45,7 @@ public class NetHelper {
 			while ((len = stream.read(b)) > 0) {
 				sb.append(new String(b, 0, len));
 			}
+			stream.close();
 			return sb.toString();
 		} catch (Exception e) {
 			throw Logger.toE(NetHelper.class, e);

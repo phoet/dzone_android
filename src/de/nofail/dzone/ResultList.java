@@ -3,13 +3,13 @@ package de.nofail.dzone;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
-import android.widget.Toast;
 
 public class ResultList extends ListActivity {
 
@@ -36,7 +36,9 @@ public class ResultList extends ListActivity {
 		getListView().setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Toast.makeText(getApplicationContext(), items.get(position).description, Toast.LENGTH_LONG).show();
+				Intent intent = new Intent(getApplicationContext(), Details.class);
+				intent.putExtra(Details.EXTRA_ITEM, items.get(position));
+				startActivity(intent);
 			}
 		});
 	}
