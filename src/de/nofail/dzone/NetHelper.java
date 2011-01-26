@@ -15,11 +15,14 @@ import android.util.Log;
 
 public class NetHelper {
 
-	private static final String HTTP_DZONE_API_HEROKU_COM_ITEMS_JSON = "http://dzone-api.heroku.com/items.json";
+	private static final String ITEMS_URL = "http://dzone-api.heroku.com/items.json";
+
+	/** http://dzone-api.heroku.com/items/:item-id/vote/:user/:pass */
+	private static final String VOTE_URL = "http://dzone-api.heroku.com/items/%s/vote/%s/%s";
 
 	public static List<Item> getItems() {
 		try {
-			String data = getDataFromUrl(HTTP_DZONE_API_HEROKU_COM_ITEMS_JSON);
+			String data = getDataFromUrl(ITEMS_URL);
 			JSONArray array = new JSONArray(data);
 			List<Item> items = new ArrayList<Item>();
 			for (int i = 0; i < array.length(); i++) {
@@ -33,10 +36,14 @@ public class NetHelper {
 		}
 	}
 
-	private static String getDataFromUrl(String httpDzoneApiHerokuComItemsJson) {
+	public static String createVoteUrl(String id, String user, String pass) {
+		return String.format(VOTE_URL, id, user, pass);
+	}
+
+	private static String getDataFromUrl(String urlString) {
 		try {
 			HttpClient client = new DefaultHttpClient();
-			HttpUriRequest request = new HttpGet(HTTP_DZONE_API_HEROKU_COM_ITEMS_JSON);
+			HttpUriRequest request = new HttpGet(ITEMS_URL);
 			InputStream stream = client.execute(request).getEntity().getContent();
 
 			byte[] b = new byte[1024 * 4];
@@ -51,5 +58,4 @@ public class NetHelper {
 			throw Logger.toE(NetHelper.class, e);
 		}
 	}
-
 }

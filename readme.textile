@@ -1,6 +1,14 @@
 h1. DZone Mobile for Android
 
-Just testing the Android platform currently. This is not close to any public release yet...
+Basic implementation of features. Needs some UI polish...
+
+Things to finish before putting this into the AppStore:
+
+* Loading more Items in ListView
+* More Information in Details
+* Preferences for Username and Password
+* Logic for Voting for an Article
+* Creating Certificate for Signing
 
 For more information about DZone Mobile visit these resources:
 

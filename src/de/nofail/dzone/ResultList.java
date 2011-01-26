@@ -13,15 +13,12 @@ import android.widget.ListAdapter;
 
 public class ResultList extends ListActivity {
 
-	private List<Item> items;
-
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		// initialize
-		items = NetHelper.getItems();
+		final List<Item> items = NetHelper.getItems();
 
 		// prepare view
 		String[] titles = new String[items.size()];
@@ -32,7 +29,6 @@ public class ResultList extends ListActivity {
 		setListAdapter(adapter);
 
 		// prepare actions
-		getListView().setTextFilterEnabled(true);
 		getListView().setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

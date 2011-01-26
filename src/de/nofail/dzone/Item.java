@@ -12,15 +12,16 @@ public class Item implements Serializable {
 	public static Item createFromJson(JSONObject json) {
 		try {
 			Item item = new Item();
+			item.id = json.getString("id");
 			item.title = json.getString("title");
 			item.description = json.getString("description");
+			item.thumbnail = json.getString("thumbnail");
+			item.deepLink = json.getString("deep_link");
 			return item;
 		} catch (JSONException e) {
 			throw Logger.toE(Item.class, e);
 		}
 	}
 
-	String title;
-	String description;
-
+	String id, title, description, thumbnail, deepLink;
 }
