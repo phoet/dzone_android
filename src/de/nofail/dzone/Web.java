@@ -1,7 +1,9 @@
 package de.nofail.dzone;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
@@ -24,12 +26,18 @@ public class Web extends Activity {
 
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View v) {
-				// TODO read preferences
-				String user = "";
-				String pass = "";
-				String url = NetHelper.createVoteUrl(item.id, user, pass);
-				Toast.makeText(getApplicationContext(), url, 3).show();
+			public void onClick(View button) {
+				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+				String username = preferences.getString("username", "");
+				String password = preferences.getString("password", "");
+
+				if (StringHelper.isOneBlank(username, password)) {
+					Toast.makeText(getApplicationContext(), "Please enter your Credentials in the Preferences Tab!", 5).show();
+				} else {
+					button.setVisibility(View.INVISIBLE);
+					NetHelper.vote(item.id, username, password);
+					Toast.makeText(getApplicationContext(), "Vote sent for " + username, 3).show();
+				}
 			}
 		});
 	}

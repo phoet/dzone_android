@@ -36,8 +36,10 @@ public class NetHelper {
 		}
 	}
 
-	public static String createVoteUrl(String id, String user, String pass) {
-		return String.format(VOTE_URL, id, user, pass);
+	public static void vote(String id, String user, String pass) {
+		String urlString = String.format(VOTE_URL, id, user, pass);
+		String data = getDataFromUrl(urlString);
+		Logger.debug(NetHelper.class, data);
 	}
 
 	private static String getDataFromUrl(String urlString) {
