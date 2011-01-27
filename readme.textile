@@ -6,8 +6,6 @@ Things to finish before putting this into the AppStore:
 
 * Loading more Items in ListView
 * More Information in Details
-* Preferences for Username and Password
-* Logic for Voting for an Article
 * Creating Certificate for Signing
 
 For more information about DZone Mobile visit these resources:
