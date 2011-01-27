@@ -17,7 +17,7 @@ public class Web extends Activity {
 
 		setContentView(R.layout.web);
 
-		final Item item = (Item) getIntent().getSerializableExtra(Details.EXTRA_ITEM);
+		final Item item = (Item) getIntent().getSerializableExtra(ExtraData.ITEM.name());
 
 		WebView web = (WebView) findViewById(R.id.web_web_view);
 		Button button = (Button) findViewById(R.id.web_button);

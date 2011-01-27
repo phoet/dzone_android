@@ -15,6 +15,8 @@ import android.util.Log;
 
 public class NetHelper {
 
+	private static final Logger log = Logger.create(NetHelper.class);
+
 	private static final String ITEMS_URL = "http://dzone-api.heroku.com/items.json";
 
 	/** http://dzone-api.heroku.com/items/:item-id/vote/:user/:pass */
@@ -32,14 +34,15 @@ public class NetHelper {
 			}
 			return items;
 		} catch (Exception e) {
-			throw Logger.toE(NetHelper.class, e);
+			throw log.toE(e);
 		}
 	}
 
 	public static void vote(String id, String user, String pass) {
 		String urlString = String.format(VOTE_URL, id, user, pass);
+		log.debug("Voting with url " + urlString);
 		String data = getDataFromUrl(urlString);
-		Logger.debug(NetHelper.class, data);
+		log.debug(data);
 	}
 
 	private static String getDataFromUrl(String urlString) {
@@ -57,7 +60,7 @@ public class NetHelper {
 			stream.close();
 			return sb.toString();
 		} catch (Exception e) {
-			throw Logger.toE(NetHelper.class, e);
+			throw log.toE(e);
 		}
 	}
 }

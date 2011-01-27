@@ -42,7 +42,7 @@ public class ResultList extends ListActivity {
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 						Intent intent = new Intent(getApplicationContext(), Details.class);
-						intent.putExtra(Details.EXTRA_ITEM, items.get(position));
+						intent.putExtra(ExtraData.ITEM.name(), items.get(position));
 						startActivity(intent);
 					}
 				});

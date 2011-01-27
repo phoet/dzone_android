@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class Details extends Activity {
 
-	public static final String EXTRA_ITEM = "extra_item";
+	private static final Logger log = Logger.create(NetHelper.class);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class Details extends Activity {
 
 		setContentView(R.layout.details);
 
-		final Item item = (Item) getIntent().getSerializableExtra(EXTRA_ITEM);
+		final Item item = (Item) getIntent().getSerializableExtra(ExtraData.ITEM.name());
 
 		TextView title = (TextView) findViewById(R.id.details_text_view_title);
 		TextView description = (TextView) findViewById(R.id.details_text_view_description);
@@ -36,21 +36,21 @@ public class Details extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(), Web.class);
-				intent.putExtra(EXTRA_ITEM, item);
+				intent.putExtra(ExtraData.ITEM.name(), item);
 				startActivity(intent);
 			}
 		});
 	}
 
 	private void loadImage(final String url) {
-		new AsyncTask<String, Void, Drawable>() {
+		new AsyncTask<Void, Void, Drawable>() {
 			@Override
-			protected Drawable doInBackground(String... urls) {
+			protected Drawable doInBackground(Void... none) {
 				try {
-					InputStream is = (InputStream) new URL(urls[0]).getContent();
+					InputStream is = (InputStream) new URL(url).getContent();
 					return Drawable.createFromStream(is, url);
 				} catch (Exception e) {
-					throw Logger.toE(getClass(), e);
+					throw log.toE(e);
 				}
 			}
 
@@ -59,6 +59,6 @@ public class Details extends Activity {
 				ImageView thumbnail = (ImageView) findViewById(R.id.details_image_view_thumbnail);
 				thumbnail.setImageDrawable(drawable);
 			};
-		}.execute(url);
+		}.execute();
 	}
 }

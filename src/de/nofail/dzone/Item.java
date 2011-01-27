@@ -7,6 +7,8 @@ import org.json.JSONObject;
 
 public class Item implements Serializable {
 
+	private static final Logger log = Logger.create(NetHelper.class);
+
 	private static final long serialVersionUID = 1L;
 
 	public static Item createFromJson(JSONObject json) {
@@ -19,7 +21,7 @@ public class Item implements Serializable {
 			item.deepLink = json.getString("deep_link");
 			return item;
 		} catch (JSONException e) {
-			throw Logger.toE(Item.class, e);
+			throw log.toE(e);
 		}
 	}
 
