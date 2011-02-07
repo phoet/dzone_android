@@ -15,6 +15,10 @@
 		android:id="@+id/details.image_view.thumbnail" 
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
+		android:minHeight="90px"
+		android:minWidth="120px"
+		android:padding="1px"
+		android:background="#fff"
 	/>
 	<TextView 
 		android:text="DESCRIPTION" 
