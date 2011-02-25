@@ -26,15 +26,15 @@ import org.json.JSONObject;
  * 
  * @author phoet
  */
-public class Item implements Serializable {
+public class ItemData implements Serializable {
 
 	private static final Logger log = Logger.create(NetHelper.class);
 
 	private static final long serialVersionUID = 1L;
 
-	public static Item createFromJson(JSONObject json) {
+	public static ItemData createFromJson(JSONObject json) {
 		try {
-			Item item = new Item();
+			ItemData item = new ItemData();
 			item.created = getDate(json, "created_at");
 			item.title = json.getString("title");
 			item.deepLink = json.getString("deep_link");

@@ -2,6 +2,7 @@ package de.nofail.dzone;
 
 import java.util.List;
 
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,7 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 
-public class ResultList extends ListActivity {
+public class ResultListActivity extends ListActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -22,14 +23,14 @@ public class ResultList extends ListActivity {
 	}
 
 	private void loadItems() {
-		new AsyncTask<Void, Void, List<Item>>() {
+		new AsyncTask<Void, Void, List<ItemData>>() {
 			@Override
-			protected List<Item> doInBackground(Void... params) {
+			protected List<ItemData> doInBackground(Void... params) {
 				return NetHelper.getItems();
 			}
 
 			@Override
-			protected void onPostExecute(final List<Item> items) {
+			protected void onPostExecute(final List<ItemData> items) {
 				String[] titles = new String[items.size()];
 				for (int i = 0; i < titles.length; i++) {
 					titles[i] = items.get(i).title;
@@ -41,8 +42,8 @@ public class ResultList extends ListActivity {
 				getListView().setOnItemClickListener(new OnItemClickListener() {
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-						Intent intent = new Intent(getApplicationContext(), Details.class);
-						intent.putExtra(ExtraData.ITEM.name(), items.get(position));
+						Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
+						intent.putExtra(ExtraDataEnum.ITEM.name(), items.get(position));
 						startActivity(intent);
 					}
 				});

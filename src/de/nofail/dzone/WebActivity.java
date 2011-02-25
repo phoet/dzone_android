@@ -9,7 +9,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class Web extends Activity {
+public class WebActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class Web extends Activity {
 
 		setContentView(R.layout.web);
 
-		final Item item = (Item) getIntent().getSerializableExtra(ExtraData.ITEM.name());
+		final ItemData item = (ItemData) getIntent().getSerializableExtra(ExtraDataEnum.ITEM.name());
 
 		WebView web = (WebView) findViewById(R.id.web_web_view);
 		Button button = (Button) findViewById(R.id.web_button);

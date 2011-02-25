@@ -1,5 +1,5 @@
 package de.nofail.dzone;
 
-public enum ExtraData {
+public enum ExtraDataEnum {
 	ITEM;
 }

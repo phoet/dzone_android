@@ -9,7 +9,7 @@ public class TestRunner extends InstrumentationTestRunner {
 	@Override
 	public TestSuite getAllTests() {
 		TestSuite suite = new InstrumentationTestSuite(this);
-		suite.addTestSuite(ItemTest.class);
+		suite.addTestSuite(ItemDataTest.class);
 		return suite;
 	}
 

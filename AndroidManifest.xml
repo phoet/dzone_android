@@ -5,16 +5,16 @@
       android:versionName="1.0">
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".Tabs" android:label="@string/app_name">
+        <activity android:name="TabsActivity" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ResultList" android:label="@string/app_name" />
-        <activity android:name=".Details" android:label="@string/app_name" />
-        <activity android:name=".Web" android:label="@string/app_name" />
-        <activity android:name=".Preferences" android:label="@string/app_name" />
+        <activity android:name="ResultListActivity" android:label="@string/app_name" />
+        <activity android:name="DetailsActivity" android:label="@string/app_name" />
+        <activity android:name="WebActivity" android:label="@string/app_name" />
+        <activity android:name="PreferencesActivity" android:label="@string/app_name" />
         
         <uses-library android:name="android.test.runner" />
         

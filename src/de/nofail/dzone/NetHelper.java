@@ -22,15 +22,15 @@ public class NetHelper {
 	/** http://dzone-api.heroku.com/items/:item-id/vote/:user/:pass */
 	private static final String VOTE_URL = "http://dzone-api.heroku.com/items/%s/vote/%s/%s";
 
-	public static List<Item> getItems() {
+	public static List<ItemData> getItems() {
 		try {
 			String data = getDataFromUrl(ITEMS_URL);
 			JSONArray array = new JSONArray(data);
-			List<Item> items = new ArrayList<Item>();
+			List<ItemData> items = new ArrayList<ItemData>();
 			for (int i = 0; i < array.length(); i++) {
 				JSONObject object = array.getJSONObject(i);
 				Log.d("json", object.toString());
-				items.add(Item.createFromJson(object));
+				items.add(ItemData.createFromJson(object));
 			}
 			return items;
 		} catch (Exception e) {
