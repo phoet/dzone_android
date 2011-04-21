@@ -7,25 +7,6 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * created_at: "2011-02-07T18:22:41Z"<br>
- * title: "HTML5 Video Facts And Fiction"<br>
- * deep_link: http://css.dzone.com/news/html5-video-facts-and-fiction<br>
- * comments: 0<br>
- * vote_down: 0<br>
- * updated_at: "2011-02-07T18:22:41Z"<br>
- * thumbnail: http://www.dzone.com/links/images/thumbs/120x90/555421.jpg<br>
- * submitter_name: "mitchp"<br>
- * id: 555421<br>
- * publishing_date: "2011-02-07T18:01:58Z"<br>
- * clicks: 198<br>
- * vote_up: 4<br>
- * submitter_image: http://www.dzone.com/links/images/avatars/478055.gif<br>
- * description: "The next generation ..." <br>
- * categories: "css-html, news, standards, web design"<br>
- * 
- * @author phoet
- */
 public class ItemData implements Serializable {
 
 	private static final Logger log = Logger.create(NetHelper.class);
@@ -80,4 +61,20 @@ public class ItemData implements Serializable {
 	String[] categories;
 
 	Date created, updated, published;
+
+	// created_at: "2011-02-07T18:22:41Z"
+	// title: "HTML5 Video Facts And Fiction"
+	// deep_link: http:// css.dzone.com/news/html5-video-facts-and-fiction
+	// comments: 0
+	// vote_down: 0
+	// updated_at: "2011-02-07T18:22:41Z"
+	// thumbnail: http:// www.dzone.com/links/images/thumbs/120x90/555421.jpg
+	// submitter_name: "mitchp"
+	// id: 555421
+	// publishing_date: "2011-02-07T18:01:58Z"
+	// clicks: 198
+	// vote_up: 4
+	// submitter_image: http:// www.dzone.com/links/images/avatars/478055.gif
+	// description: "The next generation ..." 
+	// categories: "css-html, news, standards, web design"
 }

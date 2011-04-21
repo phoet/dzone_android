@@ -25,7 +25,7 @@ public class DetailsActivity extends Activity {
 
 		setContentView(R.layout.details);
 
-		final ItemData item = (ItemData) getIntent().getSerializableExtra(ExtraDataEnum.ITEM.name());
+		final ItemData item = (ItemData) getIntent().getSerializableExtra(StringHelper.EXTRA_NAME_ITEM);
 
 		TextView title = (TextView) findViewById(R.id.details_text_view_title);
 		TextView description = (TextView) findViewById(R.id.details_text_view_description);
@@ -38,7 +38,7 @@ public class DetailsActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(), WebActivity.class);
-				intent.putExtra(ExtraDataEnum.ITEM.name(), item);
+				intent.putExtra(StringHelper.EXTRA_NAME_ITEM, item);
 				startActivity(intent);
 			}
 		});

@@ -19,7 +19,7 @@ public class NetHelper {
 
 	private static final String ITEMS_URL = "http://dzone-api.heroku.com/items.json";
 
-	/** http://dzone-api.heroku.com/items/:item-id/vote/:user/:pass */
+	// http://dzone-api.heroku.com/items/:item-id/vote/:user/:pass
 	private static final String VOTE_URL = "http://dzone-api.heroku.com/items/%s/vote/%s/%s";
 
 	public static List<ItemData> getItems() {
