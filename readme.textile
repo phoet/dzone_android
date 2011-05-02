@@ -4,7 +4,6 @@ Basic implementation of features. Needs some UI polish...
 
 Things to finish before putting this into the AppStore:
 
-* Using Menu instead of Tabs
 * Loading more Items in ListView
 * More Information in Details
 * Creating Certificate for Signing
