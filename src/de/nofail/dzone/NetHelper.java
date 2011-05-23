@@ -17,10 +17,10 @@ public class NetHelper {
 
 	private static final Logger log = Logger.create(NetHelper.class);
 
-	private static final String ITEMS_URL = "http://dzone-api.heroku.com/items.json?limit=%s";
+	private static final String ITEMS_URL = "https://dzone-api.heroku.com/items.json?limit=%s";
 
 	// http://dzone-api.heroku.com/items/:item-id/vote/:user/:pass
-	private static final String VOTE_URL = "http://dzone-api.heroku.com/items/%s/vote/%s/%s";
+	private static final String VOTE_URL = "https://dzone-api.heroku.com/items/%s/vote/%s/%s";
 
 	public static List<ItemData> getItems(int limit) {
 		try {
@@ -30,7 +30,7 @@ public class NetHelper {
 			JSONArray array = new JSONArray(data);
 			List<ItemData> items = new ArrayList<ItemData>();
 			for (int i = 0; i < array.length(); i++) {
-				JSONObject object = array.getJSONObject(i).getJSONObject("item");
+				JSONObject object = array.getJSONObject(i);
 				Log.d("json", object.toString());
 				items.add(ItemData.createFromJson(object));
 			}
