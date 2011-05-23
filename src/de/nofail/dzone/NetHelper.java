@@ -17,18 +17,20 @@ public class NetHelper {
 
 	private static final Logger log = Logger.create(NetHelper.class);
 
-	private static final String ITEMS_URL = "http://dzone-api.heroku.com/items.json";
+	private static final String ITEMS_URL = "http://dzone-api.heroku.com/items.json?limit=%s";
 
 	// http://dzone-api.heroku.com/items/:item-id/vote/:user/:pass
 	private static final String VOTE_URL = "http://dzone-api.heroku.com/items/%s/vote/%s/%s";
 
-	public static List<ItemData> getItems() {
+	public static List<ItemData> getItems(int limit) {
 		try {
-			String data = getDataFromUrl(ITEMS_URL);
+			String url = String.format(ITEMS_URL, limit);
+			log.debug("Fetching items from url " + url);
+			String data = getDataFromUrl(url);
 			JSONArray array = new JSONArray(data);
 			List<ItemData> items = new ArrayList<ItemData>();
 			for (int i = 0; i < array.length(); i++) {
-				JSONObject object = array.getJSONObject(i);
+				JSONObject object = array.getJSONObject(i).getJSONObject("item");
 				Log.d("json", object.toString());
 				items.add(ItemData.createFromJson(object));
 			}
@@ -48,7 +50,7 @@ public class NetHelper {
 	private static String getDataFromUrl(String urlString) {
 		try {
 			HttpClient client = new DefaultHttpClient();
-			HttpUriRequest request = new HttpGet(ITEMS_URL);
+			HttpUriRequest request = new HttpGet(urlString);
 			InputStream stream = client.execute(request).getEntity().getContent();
 
 			byte[] b = new byte[1024 * 4];

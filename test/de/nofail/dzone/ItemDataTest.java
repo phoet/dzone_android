@@ -19,12 +19,12 @@ public class ItemDataTest extends TestCase {
 		json = new JSONObject(TEST_JSON);
 	}
 
-	public void test_dateParsing_withDate_shouldWork() throws Exception {
+	public void test_dateParsing_withDate_shouldWork() {
 		Date date = ItemData.getDate(json, "publishing_date");
 		Assert.assertEquals(new GregorianCalendar(2011, 1, 7, 19, 7, 19).getTime(), date);
 	}
 
-	public void test_arrayParsing_withArray_shouldWork() throws Exception {
+	public void test_arrayParsing_withArray_shouldWork() {
 		String[] array = ItemData.getArray(json, "categories");
 		Assert.assertEquals("eclipse", array[0]);
 	}

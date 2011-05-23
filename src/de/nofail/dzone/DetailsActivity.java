@@ -3,8 +3,6 @@ package de.nofail.dzone;
 import java.io.InputStream;
 import java.net.URL;
 
-import de.nofail.dzone.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -18,7 +16,7 @@ import android.widget.TextView;
 public class DetailsActivity extends Activity {
 
 	private static final Logger log = Logger.create(NetHelper.class);
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +35,7 @@ public class DetailsActivity extends Activity {
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), WebActivity.class);
+				Intent intent = new Intent(v.getContext(), WebActivity.class);
 				intent.putExtra(StringHelper.EXTRA_NAME_ITEM, item);
 				startActivity(intent);
 			}
@@ -60,7 +58,7 @@ public class DetailsActivity extends Activity {
 			protected void onPostExecute(Drawable drawable) {
 				ImageView thumbnail = (ImageView) findViewById(R.id.details_image_view_thumbnail);
 				thumbnail.setImageDrawable(drawable);
-			};
+			}
 		}.execute();
 	}
 }

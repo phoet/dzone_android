@@ -39,7 +39,7 @@ public class ItemData implements Serializable {
 
 	static String[] getArray(JSONObject json, String string) {
 		try {
-			return json.getString("categories").split(", ");
+			return json.getString(string).split(", ");
 		} catch (JSONException e) {
 			throw log.toE(e);
 		}
@@ -75,6 +75,6 @@ public class ItemData implements Serializable {
 	// clicks: 198
 	// vote_up: 4
 	// submitter_image: http:// www.dzone.com/links/images/avatars/478055.gif
-	// description: "The next generation ..." 
+	// description: "The next generation ..."
 	// categories: "css-html, news, standards, web design"
 }

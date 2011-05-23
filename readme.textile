@@ -4,7 +4,8 @@ Basic implementation of features. Needs some UI polish...
 
 Things to finish before putting this into the AppStore:
 
-* Loading more Items in ListView
+* Move Vote-Button to details and open Links in Browser intent
+* Add Spinner on loading more Items
 * More Information in Details
 * Creating Certificate for Signing
 

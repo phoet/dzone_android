@@ -18,9 +18,12 @@ import android.widget.ListAdapter;
 
 public class ResultListActivity extends ListActivity {
 
+	private int limit;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		limit = 25;
 
 		loadItems();
 	}
@@ -35,14 +38,17 @@ public class ResultListActivity extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case R.id.menu_item_load_items:
+			limit += 5;
+			loadItems();
+			return true;
 		case R.id.menu_item_about:
 			Uri uri = Uri.parse("http://nofail.de/dzone");
 			Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 			startActivity(intent);
 			return true;
 		case R.id.menu_item_settings:
-			startActivity(new Intent(getApplicationContext(),
-					PreferencesActivity.class));
+			startActivity(new Intent(getApplicationContext(), PreferencesActivity.class));
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -53,7 +59,7 @@ public class ResultListActivity extends ListActivity {
 		new AsyncTask<Void, Void, List<ItemData>>() {
 			@Override
 			protected List<ItemData> doInBackground(Void... params) {
-				return NetHelper.getItems();
+				return NetHelper.getItems(limit);
 			}
 
 			@Override
@@ -62,24 +68,19 @@ public class ResultListActivity extends ListActivity {
 				for (int i = 0; i < titles.length; i++) {
 					titles[i] = items.get(i).title;
 				}
-				ListAdapter adapter = new ArrayAdapter<String>(
-						getApplicationContext(),
-						android.R.layout.simple_list_item_1, titles);
+				ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, titles);
 				setListAdapter(adapter);
 
 				// prepare actions
 				getListView().setOnItemClickListener(new OnItemClickListener() {
 					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						Intent intent = new Intent(getApplicationContext(),
-								DetailsActivity.class);
-						intent.putExtra(StringHelper.EXTRA_NAME_ITEM,
-								items.get(position));
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
+						intent.putExtra(StringHelper.EXTRA_NAME_ITEM, items.get(position));
 						startActivity(intent);
 					}
 				});
-			};
+			}
 		}.execute();
 	}
 }
