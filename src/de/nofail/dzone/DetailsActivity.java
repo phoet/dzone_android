@@ -5,13 +5,17 @@ import java.net.URL;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailsActivity extends Activity {
 
@@ -27,19 +31,38 @@ public class DetailsActivity extends Activity {
 
 		TextView title = (TextView) findViewById(R.id.details_text_view_title);
 		TextView description = (TextView) findViewById(R.id.details_text_view_description);
-		Button button = (Button) findViewById(R.id.details_button_open_in_browser);
+		Button browserButton = (Button) findViewById(R.id.details_button_open_in_browser);
+		Button voteButton = (Button) findViewById(R.id.details_button_vote_for_item);
 
 		title.setText(item.title);
 		description.setText(item.description);
 		loadImage(item.thumbnail);
-		button.setOnClickListener(new View.OnClickListener() {
+		browserButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), WebActivity.class);
-				intent.putExtra(StringHelper.EXTRA_NAME_ITEM, item);
+				Uri uri = Uri.parse(item.deepLink);
+				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 				startActivity(intent);
 			}
 		});
+
+		voteButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View button) {
+				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+				String username = preferences.getString("username", "");
+				String password = preferences.getString("password", "");
+
+				if (StringHelper.isOneBlank(username, password)) {
+					Toast.makeText(getApplicationContext(), "Please enter your Credentials in the Preferences Tab!", 5).show();
+				} else {
+					button.setVisibility(View.INVISIBLE);
+					NetHelper.vote(item.id, username, password);
+					Toast.makeText(getApplicationContext(), "Vote sent for " + username, 3).show();
+				}
+			}
+		});
+
 	}
 
 	private void loadImage(final String url) {

@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+	<TableLayout android:id="@+id/tableLayout1"
+		android:layout_height="wrap_content" android:layout_width="match_parent">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="TITLE"
+			android:id="@+id/details.text_view.title" />
+		<ImageView android:minHeight="90px" android:layout_height="wrap_content"
+			android:id="@+id/details.image_view.thumbnail" android:padding="1px"
+			android:background="#fff" android:layout_width="wrap_content"
+			android:minWidth="120px" />
+		<TextView android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:text="DESCRIPTION"
+			android:id="@+id/details.text_view.description" />
+		<TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
 
-	<TextView 
-		android:text="TITLE" 
-		android:id="@+id/details.text_view.title" 
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-	/>
-	<ImageView 
-		android:id="@+id/details.image_view.thumbnail" 
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:minHeight="90px"
-		android:minWidth="120px"
-		android:padding="1px"
-		android:background="#fff"
-	/>
-	<TextView 
-		android:text="DESCRIPTION" 
-		android:id="@+id/details.text_view.description" 
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-	/>
-	<Button 
-		android:text="@string/details.button.open_in_browser" 
-		android:id="@+id/details.button.open_in_browser" 
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-	/>
+			<Button android:id="@+id/details.button.open_in_browser"
+				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:text="@string/details.button.open_in_browser"
+				android:layout_column="1" />
+
+			<Button android:id="@+id/details.button.vote_for_item" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:text="@string/details.button.vote_for_item" />
+		</TableRow>
+
+	</TableLayout>
 
 </LinearLayout>
