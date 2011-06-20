@@ -11,6 +11,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 public class NetHelper {
@@ -21,6 +24,15 @@ public class NetHelper {
 
 	// http://dzone-api.heroku.com/items/:item-id/vote/:user/:pass
 	private static final String VOTE_URL = "https://dzone-api.heroku.com/items/%s/vote/%s/%s";
+
+	public static boolean isOnline(Context context) {
+		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
+	}
 
 	public static List<ItemData> getItems(int limit) {
 		try {

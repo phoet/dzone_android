@@ -2,7 +2,10 @@ package de.nofail.dzone;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -56,6 +59,15 @@ public class ResultListActivity extends ListActivity {
 	}
 
 	private void loadItems() {
+		if (NetHelper.isOnline(getApplicationContext())) {
+			loadAsync();
+		} else {
+			showError();
+		}
+	}
+
+	private void loadAsync() {
+		final ProgressDialog dialog = ProgressDialog.show(this, "", "Loading. Please wait...", true);
 		new AsyncTask<Void, Void, List<ItemData>>() {
 			@Override
 			protected List<ItemData> doInBackground(Void... params) {
@@ -71,7 +83,6 @@ public class ResultListActivity extends ListActivity {
 				ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, titles);
 				setListAdapter(adapter);
 
-				// prepare actions
 				getListView().setOnItemClickListener(new OnItemClickListener() {
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -80,7 +91,19 @@ public class ResultListActivity extends ListActivity {
 						startActivity(intent);
 					}
 				});
+				dialog.dismiss();
 			}
 		}.execute();
+	}
+
+	private void showError() {
+		new AlertDialog.Builder(this) //
+				.setMessage("Please activate Internet access!") //
+				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				}).create().show();
 	}
 }
