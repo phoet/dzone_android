@@ -62,6 +62,16 @@ public class ItemData implements Serializable {
 
 	Date created, updated, published;
 
+	public String getCategories() {
+		StringBuffer sb = new StringBuffer();
+		for (String c : categories) {
+			if (sb.length() != 0) {
+				sb.append(", ");
+			}
+			sb.append(c);
+		}
+		return sb.toString();
+	}
 	// created_at: "2011-02-07T18:22:41Z"
 	// title: "HTML5 Video Facts And Fiction"
 	// deep_link: http:// css.dzone.com/news/html5-video-facts-and-fiction

@@ -4,7 +4,6 @@ Basic implementation of features. Needs some UI polish...
 
 Things to finish before putting this into the AppStore:
 
-* More Information in Details
 * Creating Certificate for Signing
 
 For more information about DZone Mobile visit these resources:

@@ -2,24 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical">
-	<TableLayout android:id="@+id/tableLayout1"
-		android:layout_height="wrap_content" android:layout_width="match_parent">
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="TITLE"
-			android:id="@+id/details.text_view.title" />
-		<ImageView android:minHeight="90px" android:layout_height="wrap_content"
-			android:id="@+id/details.image_view.thumbnail" android:padding="1px"
-			android:background="#fff" android:layout_width="wrap_content"
-			android:minWidth="120px" />
-		<TextView android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:text="DESCRIPTION"
-			android:id="@+id/details.text_view.description" />
-		<TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content"
-			android:layout_height="wrap_content">
 
-			<Button android:id="@+id/details.button.open_in_browser"
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:text="@string/details.button.open_in_browser"
+	<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="TITLE" android:id="@+id/details.text_view.title" />
+
+	<TableLayout android:layout_height="wrap_content" android:layout_width="match_parent">
+
+		<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+			<ImageView android:minHeight="90px" android:layout_height="wrap_content"
+				android:id="@+id/details.image_view.thumbnail" android:padding="1px"
+				android:background="#fff" android:layout_width="wrap_content" android:minWidth="120px" />
+
+
+			<TableLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingLeft="5dip">
+				<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="CLICKS" android:id="@+id/details.text_view.clicks" />
+				<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="VOTES" android:id="@+id/details.text_view.votes" />
+				<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="COMMENTS" android:id="@+id/details.text_view.comments" />
+				<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="TAGS" android:id="@+id/details.text_view.tags" />
+			</TableLayout>
+		</TableRow>
+	</TableLayout>
+
+
+	<TextView android:layout_height="wrap_content" android:layout_width="wrap_content"
+		android:text="DESCRIPTION" android:id="@+id/details.text_view.description" />
+
+	<TableLayout android:layout_height="wrap_content" android:layout_width="match_parent">
+
+		<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+			<Button android:id="@+id/details.button.open_in_browser" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:text="@string/details.button.open_in_browser"
 				android:layout_column="1" />
 
 			<Button android:id="@+id/details.button.vote_for_item" android:layout_height="wrap_content"

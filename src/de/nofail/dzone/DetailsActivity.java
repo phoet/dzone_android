@@ -30,11 +30,19 @@ public class DetailsActivity extends Activity {
 		final ItemData item = (ItemData) getIntent().getSerializableExtra(StringHelper.EXTRA_NAME_ITEM);
 
 		TextView title = (TextView) findViewById(R.id.details_text_view_title);
+		TextView clicks = (TextView) findViewById(R.id.details_text_view_clicks);
+		TextView votes = (TextView) findViewById(R.id.details_text_view_votes);
+		TextView comments = (TextView) findViewById(R.id.details_text_view_comments);
+		TextView tags = (TextView) findViewById(R.id.details_text_view_tags);
 		TextView description = (TextView) findViewById(R.id.details_text_view_description);
 		Button browserButton = (Button) findViewById(R.id.details_button_open_in_browser);
 		Button voteButton = (Button) findViewById(R.id.details_button_vote_for_item);
 
 		title.setText(item.title);
+		clicks.setText(item.clicks + " clicks");
+		votes.setText(item.voteUp + " votes");
+		comments.setText(item.comments + " comments");
+		tags.setText(item.getCategories());
 		description.setText(item.description);
 		loadImage(item.thumbnail);
 		browserButton.setOnClickListener(new View.OnClickListener() {
