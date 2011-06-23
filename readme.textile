@@ -2,22 +2,24 @@ h2. DZone Mobile for Android
 
 For more information about DZone Mobile visit these resources:
 
-* "DZone Mobile for iPhone":http://blog.nofail.de/dzone/
-* "The infficial DZone API":http://dzone-api.heroku.com/
+* "DZone Mobile for iPhone":http://dzone.nofail.de
+* "The infficial DZone API":http://dzone-api.heroku.com
 * "Android Source on GitHub":https://github.com/phoet/dzone_android
 * "API Source on GitHub":https://github.com/phoet/dzone_api
 * "iPhone Source on GitHub":https://github.com/phoet/dzone
 
 h3. Download:
 
-http://nofail.de/downloads/dzone_android_latest
+"dzone_android_latest.apk":http://downloads.nofail.de/dzone_android_latest.apk
 
-<img src="http://qrcode.kaywa.com/img.php?s=8&d=http%3A%2F%2Fnofail.de%2Fdownloads%2Fdzone_android_latest" alt="qrcode"  />
+h3. QR-Code:
+
+<img src="http://qrcode.kaywa.com/img.php?s=8&d=http%3A%2F%2Fdownloads.nofail.de%2Fdzone_android_latest.apk" alt="qrcode" />
 
 h3. Versions:
 
 h4. 0.0.1:
 
 * Basic implementation of features. Needs some UI polish...
-* http://nofail.de/downloads/dzone_android_0_0_1.apk
+* "dzone_android_0_0_1.apk":http://downloads.nofail.de/dzone_android_0_0_1.apk
 
