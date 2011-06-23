@@ -7,9 +7,9 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ItemData implements Serializable {
+public class ItemData implements Serializable { // needs to be serializable for sake of context switches...
 
-	private static final Logger log = Logger.create(NetHelper.class);
+	private static final Logger log = Logger.create(ItemData.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +32,7 @@ public class ItemData implements Serializable {
 			item.description = json.getString("description");
 			item.categories = getArray(json, "categories");
 			return item;
-		} catch (JSONException e) {
+		} catch (JSONException e) { // fucking checked exceptions!
 			throw log.toE(e);
 		}
 	}
@@ -40,7 +40,7 @@ public class ItemData implements Serializable {
 	static String[] getArray(JSONObject json, String string) {
 		try {
 			return json.getString(string).split(", ");
-		} catch (JSONException e) {
+		} catch (JSONException e) { // fucking checked exceptions!
 			throw log.toE(e);
 		}
 	}
@@ -49,7 +49,7 @@ public class ItemData implements Serializable {
 		try {
 			// Parse Dates like 2011-02-07T18:01:58Z
 			return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(json.getString(name));
-		} catch (Exception e) {
+		} catch (Exception e) { // did i mention: fucking checked exceptions!
 			throw log.toE(e);
 		}
 	}
@@ -62,16 +62,6 @@ public class ItemData implements Serializable {
 
 	Date created, updated, published;
 
-	public String getCategories() {
-		StringBuffer sb = new StringBuffer();
-		for (String c : categories) {
-			if (sb.length() != 0) {
-				sb.append(", ");
-			}
-			sb.append(c);
-		}
-		return sb.toString();
-	}
 	// created_at: "2011-02-07T18:22:41Z"
 	// title: "HTML5 Video Facts And Fiction"
 	// deep_link: http:// css.dzone.com/news/html5-video-facts-and-fiction

@@ -1,5 +1,6 @@
 package de.nofail.dzone;
 
+import java.util.Collections;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -7,11 +8,9 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,47 +20,35 @@ import android.widget.ListAdapter;
 
 public class ResultListActivity extends ListActivity {
 
-	private int limit;
+	int limit = 25;
+
+	MenuHelper menuHelper = new MenuHelper.ResultListMenuHelper(this);
+
+	private final List<ItemData> storedItems = Collections.emptyList();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		limit = 25;
 
-		loadItems();
+		if (storedItems.isEmpty()) { // don't do it on rotation!
+			loadItems();
+		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.options, menu);
-		return true;
+		return menuHelper.create(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_item_load_items:
-			limit += 5;
-			loadItems();
-			return true;
-		case R.id.menu_item_about:
-			Uri uri = Uri.parse("http://nofail.de/dzone");
-			Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-			startActivity(intent);
-			return true;
-		case R.id.menu_item_settings:
-			startActivity(new Intent(getApplicationContext(), PreferencesActivity.class));
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
+		return menuHelper.itemSelected(item);
 	}
 
-	private void loadItems() {
+	void loadItems() {
 		if (NetHelper.isOnline(getApplicationContext())) {
 			loadAsync();
-		} else {
+		} else { // otherwise an host-not-found exception is thrown, which is stupid!
 			showError();
 		}
 	}

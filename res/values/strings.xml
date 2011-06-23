@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DZone</string>
-<string name="details.button.open_in_browser">Open in Browser</string>
-<string name="details.button.vote_for_item">Vote for Item</string>
+	<string name="app_name">DZone</string>
+	<string name="details.button.open_in_browser">Open in Browser</string>
+	<string name="details.button.vote_for_item">Vote for Item</string>
 </resources>

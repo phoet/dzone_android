@@ -2,6 +2,9 @@ package de.nofail.dzone;
 
 import android.util.Log;
 
+/**
+ * Need to create my own logger, cause the log-util-api suckz.
+ */
 public class Logger {
 
 	public static Logger create(Class<?> clazz) {

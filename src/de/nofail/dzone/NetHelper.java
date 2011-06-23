@@ -1,6 +1,7 @@
 package de.nofail.dzone;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -25,7 +27,7 @@ public class NetHelper {
 	// http://dzone-api.heroku.com/items/:item-id/vote/:user/:pass
 	private static final String VOTE_URL = "https://dzone-api.heroku.com/items/%s/vote/%s/%s";
 
-	public static boolean isOnline(Context context) {
+	public static boolean isOnline(Context context) { // do not forget to add permissions, stupid!
 		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
 		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
@@ -47,7 +49,7 @@ public class NetHelper {
 				items.add(ItemData.createFromJson(object));
 			}
 			return items;
-		} catch (Exception e) {
+		} catch (Exception e) { // finally, some more checked exceptions!
 			throw log.toE(e);
 		}
 	}
@@ -73,6 +75,15 @@ public class NetHelper {
 			}
 			stream.close();
 			return sb.toString();
+		} catch (Exception e) {
+			throw log.toE(e);
+		}
+	}
+
+	public static Drawable getDrawableFromUrl(String url) {
+		try {
+			InputStream is = (InputStream) new URL(url).getContent();
+			return Drawable.createFromStream(is, url);
 		} catch (Exception e) {
 			throw log.toE(e);
 		}

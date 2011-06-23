@@ -4,6 +4,8 @@
           android:title="Load Items" />
     <item android:id="@+id/menu_item_settings"
           android:title="Settings" />
-    <item android:id="@+id/menu_item_about"
-          android:title="About" />
+    <item android:id="@+id/menu_item_version"
+          android:title="Version" />
+    <item android:id="@+id/menu_item_website"
+          android:title="Website" />
 </menu>
