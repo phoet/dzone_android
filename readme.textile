@@ -16,6 +16,10 @@ h3. QR-Code:
 
 <img src="http://qrcode.kaywa.com/img.php?s=8&d=http%3A%2F%2Fdownloads.nofail.de%2Fdzone_android_latest.apk" alt="qrcode" />
 
+h3. Screenshots:
+
+!http://f.cl.ly/items/3U0C3f3y271L2G0B0R1f/dzone_android.png(dzone Feed)!:http://github.com/phoet/dzone_android
+
 h3. Versions:
 
 h4. 0.0.1:
